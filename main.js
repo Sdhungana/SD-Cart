@@ -1,14 +1,4 @@
-console.log('Hello');
-
-//----------  Item List-------------//
-const items = [
-  { itemName: 'Leather Bag', itemImage: '1.jpg', itemPrice: '$93.78' },
-  { itemName: 'Air pod', itemImage: '2.jpg', itemPrice: '$150.78' },
-  { itemName: 'Louis Vutton Shoe', itemImage: '3.jpg', itemPrice: '$230.78' },
-  { itemName: 'Guitar', itemImage: '4.jpg', itemPrice: '$53.78' },
-  { itemName: 'Laptop Bag', itemImage: '5.jpg', itemPrice: '$23.78' },
-  { itemName: 'JBL Headphone', itemImage: '6.jpg', itemPrice: '$540.78' },
-];
+import { items } from './items.js';
 
 //-------Prevents JS from execution prior to rendering HTML and CSS---------//
 document.onreadystatechange = () => {
@@ -57,6 +47,7 @@ function addToCart(event) {
   const myItem = btnElem.parentElement;
   const itemName = myItem.querySelector('.item-name').innerText;
   const itemPic = myItem.querySelector('.item-image').src.split('/');
+
   const itemPrice = myItem.querySelector('.item-price').innerText;
 
   //---------Prevent duplicate items----------------//
@@ -69,9 +60,9 @@ function addToCart(event) {
   }
 
   //--------------Create only one cartItemList Element------------/
-  console.log(cartItemList.children.length);
+
   if (cartItemList.children.length == 0) {
-    console.log(cartItemList.children);
+
     const cartItems = document.querySelector('.cart-items');
     const cartTotal = document.querySelector('.cart-total');
     cartItems.insertBefore(cartItemList, cartTotal);
@@ -82,8 +73,8 @@ function addToCart(event) {
                     <span class="cart-item-sno cart-column">${++itemSno}</span>
                     <div class="cart-item cart-column">
                         <img src="images/${
-                          itemPic[4]
-                        }" class="cart-item-image cart-column">
+    itemPic[4]
+    }" class="cart-item-image cart-column">
                         <span class="cart-item-title">${itemName}</span>
                     </div>
                     <span class="cart-price  cart-column">${itemPrice}</span>
@@ -125,7 +116,7 @@ function changeQuantity(event) {
   const qtyInput = event.target;
   if (isNaN(qtyInput.value) || qtyInput.value < 1) {
     qtyInput.value = 1;
-    console.log(qtyInput);
+
   } else {
     updateTotalPrice();
   }
@@ -134,7 +125,7 @@ function changeQuantity(event) {
 // --------------Remove Cart Item-------------------//
 
 function removeCartItem(event) {
-  console.log(event.target);
+
   const btnElem = event.target;
   btnElem.parentElement.parentElement.remove();
   updateTotalPrice();
